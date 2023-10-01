@@ -1,0 +1,21 @@
+pipeline {
+    agent {
+        docker {
+            image 'php:7.4-apache2'
+            args '-p 81:80'
+        }
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                sh 'echo passed'
+            }
+        }
+        stage('Build and Deploy') {
+            steps {
+                sh 'docker build -t website12 .'
+                sh 'docker run -d -p 81:80 --name website1 website12'
+            }
+        }
+    }
+}
