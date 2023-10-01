@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'polytropo/dev-php-base:latest'
-            args '-p 81:80'
+            image 'node:16-alpine'
         }
     }
     stages {
