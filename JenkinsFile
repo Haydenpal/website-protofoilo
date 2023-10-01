@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'php:7.4-apache2'
+            image 'polytropo/dev-php-base:latest'
             args '-p 81:80'
         }
     }
