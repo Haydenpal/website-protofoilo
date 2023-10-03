@@ -10,15 +10,30 @@ pipeline {
                 checkout scm
             }
         }
+        
         stage('Build and Deploy') {
             steps {
                 // Build your Docker image
                 sh 'docker build -t website12 .'
-
+                
                 // Run your Docker container
                 sh 'docker run -d -p 81:80 --name website1 website12'
             }
         }
+        
+        stage('Push to Docker Hub') {
+            steps {
+                // Log in to Docker Hub
+                sh 'docker login -u haydenpal2003 -p Rhayden087@'
+                
+                // Tag the Docker image
+                sh 'docker tag website12:1.0 haydenpal2003/website12:1.0'
+                
+                // Push the Docker image to Docker Hub
+                sh 'docker push haydenpal2003/website12:1.0'
+            }
+        }
     }
 }
+
 
