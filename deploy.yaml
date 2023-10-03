@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website12-deployment
+  labels:
+    app: website12
+spec:
+  replicas: 3   # Number of desired replicas
+  selector:
+    matchLabels:
+      app: website12
+  template:
+    metadata:
+      labels:
+        app: website12
+    spec:
+      containers:
+      - name: website12
+        image: haydenpal2003/website12:1.0  # Replace with your Docker image name and tag
+        ports:
+        - containerPort: 80  # Port your application listens on
