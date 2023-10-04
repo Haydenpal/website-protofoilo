@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: website12-deploy
+  name: website12-deployment
   labels:
     app: website12
 spec:
@@ -16,6 +16,22 @@ spec:
     spec:
       containers:
       - name: website12
-        image: haydenpal2003/website12  # Replace with your Docker image name and tag
+        image: haydenpal2003/website12:tagname  # Updated Docker image name and tag
         ports:
-        - containerPort: 83  # Port your application listens on
+        - containerPort: 80  # Port your application listens on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website12-service
+  labels:
+    app: website12
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80  # Port to expose on the service
+      targetPort: 80  # Port your application listens on in the pods
+  selector:
+    app: website12
+
