@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: website12
-        image: haydenpal2003/website12:tagname  # Updated Docker image name and tag
+        image: haydenpal2003/website12:latest # Updated Docker image name and tag
         ports:
         - containerPort: 8080 # Port your application listens on
