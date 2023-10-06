@@ -31,15 +31,8 @@ pipeline {
                 sh 'docker push haydenpal2003/website12'
             }
         }
-       stage('Deploying App to Kubernetes') {
-           steps {
-              script {
-                  kubernetesDeploy(configs: "deploy.yml", kubeconfigId: "kubernetes")
-           }
-        }
+       
     }
-
- }  
 }
 
 
