@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    tools {nodejs "Node"}
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Check out your source code from a specific Git repository
+                git branch: 'main', url: 'https://github.com/devopshint/Deploy-NodeApp-to-AWS-EKS-using-Jenkins-Pipeline.git'
+            }
+        }
+
+        stage('Node JS Build') {
+            steps {
+                // Use the Node.js tool to run npm install
+                sh 'npm install'
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                // Use the Node.js tool
+                sh 'node -v'
+
+                // Build your Docker image
+                sh 'docker build -t node .'
+
+                // You've requested to remove the kubectl apply commands, so this section is empty
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                // Log in to Docker Hub (embedding credentials)
+                sh 'docker login -u haydenpal2003 -p Rhayden087@'
+
+                // Tag the Docker image
+                sh 'docker tag node haydenpal2003/node'
+
+                // Push the Docker image to Docker Hub
+                sh 'docker push haydenpal2003/node'
+            }
+        }
+    }
+}
