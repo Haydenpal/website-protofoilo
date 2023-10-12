@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: "haydenpal2003/node:tagname"
+        image: "haydenpal2003/node:latest"
         ports:
           - containerPort: 3000
 ---
